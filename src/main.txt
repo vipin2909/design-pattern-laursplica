@@ -1,0 +1,118 @@
+
+Next js -> React framework for production
+
+React
+    Not quite possible to build a full feature rich application ready to be deployed for produdction
+    React is a library for building user interfaces
+    you have to make decisions on other features of the app like routing, styling, authentication etc.
+
+
+Next.js
+    A package that uses React for building user interfaces
+    Loaded with a lot more features that enable you to build full fledged production ready applications
+    Features exactly like routing, styling, authentication, bundle optimization etc.
+    There's no need to install additional packages, Next.js provides everything for you
+    Opinions and conventions need to be followed to implement the above said features
+    Basically it is react js framework for building production ready applications
+
+
+While to learn Next.js
+    Next.js simplifies the process of building a react application for production
+    1. File based routing
+    2. Pre-rendering -> generate html for each page in advance instead of having it all done by client side js
+        pre-rendering can result in better performance and seo (search engine optimization)
+    3. API routes
+    4. Supports for CSS modules out of the box
+    5. Authentication - supports multiple authentication patterns each designed for different use case
+    6. Dev and Prod build System
+
+
+Project Structure
+    package.json -> this file contains the dependencies and the scripts rquired for the project
+        have three dependencies and two dev dependencies
+            dependencies:
+                1.next
+                2.react
+                3.react-dom
+            devDependencies:
+                1.eslint
+                2.eslint-config-next
+            scripts:
+                1. dev: 'next dev' -> runs in development mode
+                2. build: 'next build' -> while compiles and prepares for production deployment
+                3. start: 'next start' -> which starts the compiled application in production mode
+                4. lint: 'next lint'
+
+            Next js is full stack framework and you can have a server so you need a script to start that server
+            you can also build complete static sites which don't require a server
+
+    .next -> this is a folder that is generated when we run either the dev or build scripts
+        it is from this folder that our next js application is served from
+        folder is .gitignore
+
+
+    node_modules -> in which all the dependencies are installed
+        it is generated when we run npm install
+
+    styles-> contains some style for out application
+        we have global styles and component specific styles
+        // it does not have any significance as such
+        // because it is possible to define styles in other folders
+
+    public -> holds all the public resources for our application favicons svgs images etc.
+        in react js public folder contains index.html file which is single file
+
+    pages -> this folder solely responsible for routing feature
+        index.tsx is the file which serves on localhost:3000 when we run the app
+        _app.tsx is where we can define the layout of our application
+        and api folder is where we can create apis for our application
+
+
+
+Routing Section Intro
+    Routing in a react app
+        installed a third party package
+        routes.js file to configure the routes
+        For each route, create a component file, export the component, import it in routes.js and configure the new route with a path property.
+
+    Routing in Next.js app
+        File-system based routing mechanism
+        When a file is added to the pages folder in project, it automatically available as a route
+        By mixing and matching file names with a nested folder structure, it is possible to pretty much define the most common routing patterns
+
+
+Nested Routes
+    localhost:3000/blog
+        localhost:3000/blog/first
+        localhost:3000/blog/second
+
+
+
+
+Dynamic Routes
+    /product
+        product/id (dynamic route)
+        product1 -> product/1
+        product2 -> product/2
+        product3 -> product/3
+    treats [] bracket file name as dynamic segment to create a dynamic route
+
+
+Catch all routes
+    [...params]
+    const router = useRouter();
+    const { params } = router.query;
+    println(params);
+
+    Optional Catch Route
+        docs/[...params] -> localhost:3000/docs -> return 404 Error
+        docs/[[...params]] -> localhost:3000/docs -> return docs Page (screen)
+
+
+
+
+Link Component Navigation
+    use link to navigate in between client side
+    don't use <a> tag because it make server request and erase state that we are maintaining
+    use replace in the last otherwise it will create new route on stack which may leads to differ results
+
